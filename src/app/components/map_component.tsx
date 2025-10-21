@@ -2,6 +2,7 @@
 import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps'
 
 export default function GoogleMap() {
+  //long and lat of Massachusetts 
     const position = {lat: 42.407211, lng: -71.382439}
     return(
         

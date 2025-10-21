@@ -4,6 +4,7 @@ import GoogleMap from "./components/map_component";
 export default function Home() {
   return (
     <div>
+      
       <GoogleMap />
 
       <h1>Home page</h1>
