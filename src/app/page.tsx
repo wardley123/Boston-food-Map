@@ -1,15 +1,28 @@
 import Image from "next/image";
+import ReactDOM from "react-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import GoogleMap from "./components/map_component";
-import Login from "./pages/login";
 
 export default function Home() {
   return (
     <div>
-      <Login />
-      <GoogleMap />
+       <div className = "min-h-screen flex item-center justify-center bg-gray-100">
+        <div className="bg-white p-8 rounded-lg shadow-ms">
+          <h1 className="text-2xl font-bold text center mb-6">
+            
+          </h1>
+        </div>
+        <label className="text" >
+            Username = <input name = "username" />
+        </label>
+  
 
-      <h1>Home page</h1>
-      <h1>hellos</h1>
+        <label>
+            Password = <input name = "Password" />
+        </label>
+    </div>
+      {/*<GoogleMap />*/}
+
     </div>
   );
 }
