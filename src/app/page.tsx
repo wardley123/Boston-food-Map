@@ -5,24 +5,18 @@ import GoogleMap from "./components/map_component";
 
 export default function Home() {
   return (
-    <div>
-       <div className = "min-h-screen flex item-center justify-center bg-gray-100">
-        <div className="bg-white p-8 rounded-lg shadow-ms">
-          <h1 className="text-2xl font-bold text center mb-6">
-            
-          </h1>
-        </div>
-        <label className="text" >
-            Username = <input name = "username" />
-        </label>
-  
 
-        <label>
-            Password = <input name = "Password" />
-        </label>
-    </div>
-      {/*<GoogleMap />*/}
+   <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <form>
+      <label htmlFor="emailAddress">Email Address</label><br></br>
+      <input type="text" />
+      <br></br>
+      <label htmlFor="Password">Password</label>
+      <input type="text" />
+    </form>
 
+        {/*<GoogleMap />*/}
+      
     </div>
   );
 }
