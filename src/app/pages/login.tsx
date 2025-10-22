@@ -1,5 +1,14 @@
 export default function Login(){
     
-    return( console.log("hi"))
+    return( 
+    <div>
+        <label >
+            Username = <input name = "username" />
+        </label>
+        <label>
+            Password = <input name = "Password" />
+        </label>
+    </div>
+    )
 
 }
