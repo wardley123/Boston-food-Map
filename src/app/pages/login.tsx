@@ -1,5 +1,12 @@
+import { useState } from "react"
+
 export default function login(){
-    return(
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState('')
+
+  return(
     <div className="flex items-center justify-center h-screen p-4">
     
     <form className="w-full max-w-md space-y-6 bg-white p-8 rounded-lg border border-gray-900 shadow-sm dark:bg-gray-800 dark:border-gray-700 min-h-96">
@@ -19,4 +26,6 @@ export default function login(){
   
 </div>
     )
+
 }
+    
