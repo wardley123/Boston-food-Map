@@ -1,4 +1,15 @@
+"use client"
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+const supabase = createClient(supabaseUrl!, supabaseAnonKey!)
+
 import { useState } from "react"
+import GoogleMap from "../components/map_component";
+
+import { createClient } from '@supabase/supabase-js'
+
+
 
 export default function login(){
   const [email, setEmail] = useState('')
@@ -14,6 +25,10 @@ export default function login(){
     <div>
       <label htmlFor="emailAddress" className="block mb-2">Email Address:</label>
       <input type="text" id="emailAddress" className="w-full px-3 py-2 border rounded" />
+      {loading ? (
+       <GoogleMap />)  : (
+       <h2>please enter username</h2>
+      )}
     </div>
 
     
