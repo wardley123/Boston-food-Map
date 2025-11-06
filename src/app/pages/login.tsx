@@ -5,17 +5,30 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 const supabase = createClient(supabaseUrl!, supabaseAnonKey!)
 
 import { useState } from "react"
+//once login is complete will access the map componet
 import GoogleMap from "../components/map_component";
 
 import { createClient } from '@supabase/supabase-js'
-
-
+//TODO:
+//complete databases and login in functionality 
+//complete usestate functionality
+//research more about supabase and how to use it.
 
 export default function login(){
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
+
+  //user signup handler 
+  const HandleSignUp = async() => {
+    setLoading(true)
+    setMessage('')
+  const {data, error} = await supabase.auth.signUp({
+    email: email,
+    password: password
+  })
+}
 
   return(
     <div className="flex items-center justify-center h-screen p-4">
