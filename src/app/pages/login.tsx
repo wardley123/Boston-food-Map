@@ -19,36 +19,45 @@ export default function login(){
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [message, setMessage] = useState('')
+  const [error, setError] = useState('')
 
   //user signup handler 
-  const HandleSignUp = async() => {
+  const HandleSignUp = async(e : React.FormEvent) => {
+    e.preventDefault()
+
     setLoading(true)
     setMessage('')
+  //allows users to sign up and create a new account thru supabase
   const {data, error} = await supabase.auth.signUp({
-    email: email,
-    password: password
+    email,
+    password
   })
 }
+
 
   return(
     <div className="flex items-center justify-center h-screen p-4">
     
-    <form className="w-full max-w-md space-y-6 bg-white p-8 rounded-lg border border-gray-900 shadow-sm dark:bg-gray-800 dark:border-gray-700 min-h-96">
+    <form onSubmit={HandleSignUp} className="w-full max-w-md space-y-6 bg-white p-8 rounded-lg border border-gray-900 shadow-sm dark:bg-gray-800 dark:border-gray-700 min-h-96">
     
     <div>
       <label htmlFor="emailAddress" className="block mb-2">Email Address:</label>
-      <input type="text" id="emailAddress" className="w-full px-3 py-2 border rounded" />
-      {loading ? (
-       <GoogleMap />)  : (
-       <h2>please enter username</h2>
-      )}
+    {/* value = {email} sets the value of the input to our usestate email variable */}
+    {/* onchange={(e)} => setEmail(target value)}  this extracts the current text within the input and calls the usestate setEmail to with the value and re-renders */}
+      <input type="email" id="emailAddress" value={email} onChange={(e) => setEmail(e.target.value)} required className="w-full px-3 py-2 border rounded" />
     </div>
 
     
     <div>
       <label htmlFor="password" className="block mb-2">Password:</label>
-      <input type="password" id="password" className="w-full px-3 py-2 border rounded" />
+       {/* value = {password} sets the value of the input to our usestate password variable */}
+    {/* onchange={(e)} => setPassword(target value)}  this extracts the current text within the input and calls the usestate setPassword to with the value and re-renders */}
+      <input type="password" id="password" value ={password} onChange ={(e) => setPassword(e.target.value)} required className="w-full px-3 py-2 border rounded" />
     </div>
+
+    <button type="submit" disabled={loading}>
+      {loading ? "signing up.." : "sign up"}
+    </button>
 
   </form>
   
