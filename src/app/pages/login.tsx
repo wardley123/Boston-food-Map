@@ -10,9 +10,11 @@ import GoogleMap from "../components/map_component";
 
 import { createClient } from '@supabase/supabase-js'
 //TODO:
-//complete databases and login in functionality 
-//complete usestate functionality
-//research more about supabase and how to use it.
+//handle successful authenitcation 
+//password validation
+//handle redirection(to map componet) after successful sign up
+//The Supabase client initialization is outside the component. This works, but it's cleaner to move it to a separate utils file so you can reuse it elsewhere.
+//Reset error state in handleSubmit. You clear message but not error at the start of the handler.
 
 export default function login(){
   const [email, setEmail] = useState('')
@@ -22,16 +24,29 @@ export default function login(){
   const [error, setError] = useState('')
 
   //user signup handler 
-  const HandleSignUp = async(e : React.FormEvent) => {
-    e.preventDefault()
+  const handleSignUp = async(e : React.FormEvent) => {
 
+    e.preventDefault()
     setLoading(true)
     setMessage('')
+
+    //check for if usestate (users) password is less than 6 characters
+    if(password.length < 6){
+      setError("Password must be at least 6 characters")
+      setLoading(false)
+      return
+    }
+
   //allows users to sign up and create a new account thru supabase
   const {data, error} = await supabase.auth.signUp({
     email: email,
     password: password
   })
+
+  if(error){
+    setError(error.message)
+    setLoading(false)
+  }
 }
 
 
@@ -39,7 +54,7 @@ export default function login(){
     <div className="flex items-center justify-center h-screen p-4">
     
     <form 
-    onSubmit={HandleSignUp} 
+    onSubmit={handleSignUp} 
     className="w-full max-w-md space-y-6 bg-white p-8 rounded-lg border border-gray-900 shadow-sm dark:bg-gray-800 dark:border-gray-700 min-h-96">
     
     <div>
