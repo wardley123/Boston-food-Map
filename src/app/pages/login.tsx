@@ -78,7 +78,7 @@ export default function login(){
       className="block mb-2">Password:
       </label>
 
-      {/* value = {password} sets the value of the input to our usestate password variable */}
+    {/* value = {password} sets the value of the input to our usestate password variable */}
     {/* onchange={(e)} => setPassword(target value)}  this extracts the current text within the input and calls the usestate setPassword to with the value and re-renders */}
       <input 
       type="password" 
@@ -92,7 +92,8 @@ export default function login(){
       disabled={loading}
       className="mx-auto block px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50"
     >
-      {loading ? "signing up.." : "sign up"}
+      {/*eventaully make this lead to the map component */}
+      {loading ? <GoogleMap /> : "sign up"}
     </button>
 
   </form>
