@@ -1,14 +1,10 @@
 "use client"
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 
-const supabase = createClient(supabaseUrl!, supabaseAnonKey!)
-
+import { supabase } from "@/lib/supabase"
 import { useState } from "react"
 //once login is complete will access the map componet
-import GoogleMap from "../components/map_component";
+import GoogleMap from "./components/map_component";
 
-import { createClient } from '@supabase/supabase-js'
 //TODO:
 //handle successful authenitcation 
 //password validation
@@ -16,7 +12,7 @@ import { createClient } from '@supabase/supabase-js'
 //The Supabase client initialization is outside the component. This works, but it's cleaner to move it to a separate utils file so you can reuse it elsewhere.
 //Reset error state in handleSubmit. You clear message but not error at the start of the handler.
 
-export default function login(){
+export default function Signup(){
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -49,9 +45,9 @@ export default function login(){
   }
 }
 
-
   return(
     <div className="flex items-center justify-center h-screen p-4">
+      <p>Sign up: </p>
     
     <form 
     onSubmit={handleSignUp} 
@@ -62,7 +58,7 @@ export default function login(){
       htmlFor="emailAddress" 
       className="block mb-2">Email Address:
       </label>
-    {/* value = {email} sets the value of the input to our usestate email variable */}
+    {/* value = {email} sets the value of the input to our useState email variable */}
     {/* onchange={(e)} => setEmail(target value)}  this extracts the current text within the input and calls the usestate setEmail to with the value and re-renders */}
       <input 
       type="email" 
@@ -95,6 +91,8 @@ export default function login(){
       {/*eventaully make this lead to the map component */}
       {loading ? <GoogleMap /> : "sign up"}
     </button>
+
+    
 
   </form>
   
