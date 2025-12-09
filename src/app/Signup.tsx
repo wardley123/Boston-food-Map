@@ -2,6 +2,7 @@
 
 import { supabase } from "@/lib/supabase"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 //once login is complete will access the map componet
 import GoogleMap from "./components/map_component";
 
@@ -13,6 +14,7 @@ import GoogleMap from "./components/map_component";
 //Reset error state in handleSubmit. You clear message but not error at the start of the handler.
 
 export default function Signup(){
+  const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
@@ -86,11 +88,15 @@ export default function Signup(){
     <button
       type="submit"
       disabled={loading}
-      className="mx-auto block px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50"
-    >
-      {/*eventaully make this lead to the map component */}
-      {loading ? <GoogleMap /> : "sign up"}
+      className="mx-auto block px-4 py-2 bg-blue-600 text-white rounded disabled:opacity-50">
+        {loading ? "loading..." : "sign up"}
     </button>
+
+    
+    <p 
+      className="text-center text-sm">
+      Have an account already? <a href= '/Login' className="text-blue-600 hover:underline">Login</a>
+    </p>
 
     
 
