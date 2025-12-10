@@ -1,10 +1,14 @@
+//tells next.js this is a client component
 "use client"
 
+//imports
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { supabase } from "@/lib/supabase"
 
+
 export default function Login (){
+    //useRouter object, used for navigation
     const router = useRouter()
     //state variables for the Email, Password, Error, and loading states
     const[email, setEmail] = useState('')
@@ -13,16 +17,18 @@ export default function Login (){
     const[message, setMessage] = useState('')
     const[loading, setLoading] = useState(false)
 
-    //login in handler, to handle already existing users
+    //login in handler, an async function that takes event e React.FormEvent- triggers when form is submitted
     const loginHandler = async(e : React.FormEvent) => {
-        //set the setter methods to their base values
+        //set the setter methods to their base values so we can have a clean slate when we login in
         //to prevent default form submission behavior
         e.preventDefault()
         setLoading(true)
         setMessage('')
         setError('')
 
-        //check if user exist with supabase
+        //uses supabase to authenticate the user and we use await to we can wait to see if the promise is rejected or resolved
+        //we destructure the response into data(a successful login) and error(unsuccessful login)
+        //set the email = to our state email variable and so the same for password
         let { data, error: signInError } = await supabase.auth.signInWithPassword({
             email: email,
             password: password
@@ -32,12 +38,12 @@ export default function Login (){
         if(signInError){
             //displays message
             setError(signInError.message)
-            //set loading to false
+            //set loading to false to be able to try again
             setLoading(false)
         }
         else{
-            //navigates to the map component to begin searching for food locations
-            router.push('/GoogleMap')
+            //navigates to the map component with router.push to navigate thru pages to begin searching for food locations
+            router.push('/map_component')
         }
     }
 
@@ -67,14 +73,14 @@ export default function Login (){
                 <div>
 
                     <label 
-                        htmlFor="Password"
+                        htmlFor="password"
                         className="block mb-2">Password: 
                     </label>
 
                     <input
                         type="Password" 
                         id="Password" 
-                        value={email} onChange={(e) => setPassword(e.target.value)} required 
+                        value={password} onChange={(e) => setPassword(e.target.value)} required 
                         className="w-full px-3 py-2 border rounded" 
                     />
                 </div>
@@ -90,7 +96,7 @@ export default function Login (){
 
                 <p 
                 className="text-center text-sm">
-                Don't have an account? <a href="/Signup" className="text-blue-600 hover:underline">Sign up</a>
+                Don't have an account? <a href="/signup" className="text-blue-600 hover:underline">Sign up</a>
         </p>
 
                 

@@ -4,7 +4,6 @@ import { supabase } from "@/lib/supabase"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 //once login is complete will access the map componet
-import GoogleMap from "./components/map_component";
 
 //TODO:
 //handle successful authenitcation 
@@ -95,7 +94,7 @@ export default function Signup(){
     
     <p 
       className="text-center text-sm">
-      Have an account already? <a href= '/Login' className="text-blue-600 hover:underline">Login</a>
+      Have an account already? <a href= '/login' className="text-blue-600 hover:underline">Login</a>
     </p>
 
     
