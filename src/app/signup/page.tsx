@@ -5,11 +5,9 @@ import { useState } from "react"
 import { useRouter } from "next/navigation"
 //once login is complete will access the map componet
 
-//TODO:
-//handle successful authenitcation 
+//TODO: 
 //password validation
 //handle redirection(to map componet) after successful sign up
-//The Supabase client initialization is outside the component. This works, but it's cleaner to move it to a separate utils file so you can reuse it elsewhere.
 //Reset error state in handleSubmit. You clear message but not error at the start of the handler.
 
 export default function Signup(){
@@ -22,7 +20,7 @@ export default function Signup(){
 
   //user signup handler 
   const handleSignUp = async(e : React.FormEvent) => {
-
+    //set state variables to base values to start off fresh 
     e.preventDefault()
     setLoading(true)
     setMessage('')
@@ -35,11 +33,14 @@ export default function Signup(){
     }
 
   //allows users to sign up and create a new account thru supabase
+  //awaits a successful promise or rejects it
+  //destructures to data(user info) and error
   const {data, error} = await supabase.auth.signUp({
     email: email,
     password: password
   })
 
+  //error check
   if(error){
     setError(error.message)
     setLoading(false)
@@ -48,13 +49,15 @@ export default function Signup(){
 
   return(
     <div className="flex items-center justify-center h-screen p-4">
-      <p>Sign up: </p>
+     
     
     <form 
     onSubmit={handleSignUp} 
     className="w-full max-w-md space-y-6 bg-white p-8 rounded-lg border border-gray-900 shadow-sm dark:bg-gray-800 dark:border-gray-700 min-h-96">
     
     <div>
+      <h2 className="text-2xl font-bold">Sign up:</h2>
+
       <label 
       htmlFor="emailAddress" 
       className="block mb-2">Email Address:

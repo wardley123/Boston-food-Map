@@ -43,7 +43,7 @@ export default function Login (){
         }
         else{
             //navigates to the map component with router.push to navigate thru pages to begin searching for food locations
-            router.push('/map_component')
+            router.push('/map')
         }
     }
 
