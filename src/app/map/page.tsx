@@ -2,6 +2,8 @@
 import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps'
 import { useState } from 'react'
 
+//TODO implement places API to be able to have resturants show up near the unversity
+
 export default function GoogleMap() {
 
     const [searchInput, setSearchInput] = useState('')
@@ -73,6 +75,7 @@ export default function GoogleMap() {
           left: '10px',
           zIndex: 10,
           display: 'flex',
+          flexDirection: 'column',
           gap: '8px',
           backgroundColor: 'white',
           padding: '8px',
@@ -83,7 +86,7 @@ export default function GoogleMap() {
         }}
         >
         <div onSubmit={(e) => { e.preventDefault(); handleSearch(); }}>
-
+        {/*search bar to look up universities */}
           <input
           type="text"
           placeholder='Enter your University'
@@ -94,6 +97,21 @@ export default function GoogleMap() {
           />
           
         </div>
+
+        {/*button to view saved locations */}
+        <button
+          style={{
+            padding: '8px 16px',
+            backgroundColor: '#4285F4',
+            color: 'white',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            fontSize: '14px',
+            fontWeight: '500',
+          }}>
+            View saved resuturants
+        </button>
 
 
         </div>
