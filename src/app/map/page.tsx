@@ -1,4 +1,5 @@
 "use client"
+
 import { APIProvider, Map, Marker } from '@vis.gl/react-google-maps'
 import { useState } from 'react'
 
@@ -13,6 +14,7 @@ export default function GoogleMap() {
 
     const apiKey = process.env.NEXT_PUBLIC_MAP_API_KEY;
 
+    //debug statement
     console.log("API key in use:", apiKey)
 
     if (!apiKey) {
@@ -31,6 +33,7 @@ export default function GoogleMap() {
         const response = await fetch(
           `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(searchInput)}&key=${apiKey}`
         )
+        //debug statment 
         const data = await response.json()
         console.log("Geocoding response", data)
 
@@ -51,6 +54,11 @@ export default function GoogleMap() {
       } catch (error){
           console.error("Error with search ",error)
       }
+
+    }
+
+    //function shows resturants near the searched univeristy
+    const showResturants = async () =>{
 
     }
 
